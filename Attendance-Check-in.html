@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance Check-in</title>
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(submitForm);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function submitForm(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            var formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeq9DvJa3KpmmDhVtIIW9XIxBqHpGUUTPF9-aPWmHsSHAnqaw/viewform?usp=pp_url&entry.1762029873=Henriek+D.+Andrada&entry.495178146=BSIS+3-C&entry.1867496027=2024-09-17&entry.1271514899=Teachers+Vill"; // Replace with your Google Form URL
+
+            // Append geolocation data to the URL
+            var url = formUrl + "?entry.1271514899" + encodeURIComponent(latitude + "," + longitude);
+
+            // Redirect to the Google Form with geolocation data
+            window.location.href = url;
+        }
+    </script>
+</head>
+<body onload="getLocation()">
+    <p>Submitting your attendance...</p>
+</body>
+</html>
